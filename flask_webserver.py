@@ -4,6 +4,7 @@ import pymongo
 from bson import ObjectId
 import requests
 import os
+import sys
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -24,8 +25,8 @@ def get_ip():
     # file = open(os.path.dirname(os.path.realpath(__file__))+'/ip', 'r')
     # ip = file.read() 
     # file.close()
-
-    return '3.218.241.11:5000'
+    micro_service_ip = sys.argv[1]+':5000'
+    return micro_service_ip
 
 def get_all_tarefas_json():
     r = requests.get('http://'+get_ip()+'/Tarefa')

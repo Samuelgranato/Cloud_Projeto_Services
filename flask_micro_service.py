@@ -2,6 +2,7 @@ from flask import Flask, request,jsonify
 import json
 import pymongo
 from bson import ObjectId
+import sys
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
@@ -122,7 +123,9 @@ if __name__ == '__main__':
     # client = pymongo.MongoClient("mongodb://18.220.67.82/tarefa") # defaults to port 27017
     # db = client.tarefa
 
-    myclient = pymongo.MongoClient("mongodb://18.220.67.82:27017/projeto")
+    database_ip = sys.argv[1]
+
+    myclient = pymongo.MongoClient("mongodb://"+database_ip+":27017/projeto")
     mydb = myclient["projeto"]
     mycol = mydb["tarefa"]
 
